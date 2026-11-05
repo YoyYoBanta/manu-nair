@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Manu S Nair Portfolio</title>
+<meta name="description" content="Manu S Nair: partnerships manager at Amber who builds working AI prototypes. PRDs, prototypes, user research and case studies.">
+<meta property="og:title" content="Manu S Nair · Portfolio">
+<meta property="og:description" content="Partnerships manager who builds working AI prototypes with Claude. Case studies: POAI, AJIO Decide, Cricfield and more.">
+<meta property="og:type" content="website">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,-apple-system,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a product changelog. Each project is a shipped release: meta rail on the left (status, where, stack), the case on the right (problem, built, outcome, numbers). */
+:root {
+  --bg: #f3f4ef;
+  --surface: #ffffff;
+  --ink: #141821;
+  --muted: #5a6170;
+  --line: #d8dbd2;
+  --accent: #2340d8;
+  --accent-soft: #e3e7fb;
+  --live: #1d7f47;
+  --live-soft: #dcefe3;
+  --warn: #9a5a00;
+  --warn-soft: #f6ead6;
+  --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body: "Hanken Grotesk", "Helvetica Neue", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1217; --surface: #161a21; --ink: #e8eaef; --muted: #9aa1ae; --line: #2a2f39;
+    --accent: #8a9dff; --accent-soft: #1e2648; --live: #5bc98a; --live-soft: #15301f;
+    --warn: #e0a54c; --warn-soft: #33270f; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1217; --surface: #161a21; --ink: #e8eaef; --muted: #9aa1ae; --line: #2a2f39;
+  --accent: #8a9dff; --accent-soft: #1e2648; --live: #5bc98a; --live-soft: #15301f;
+  --warn: #e0a54c; --warn-soft: #33270f; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.55; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.label { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+
+/* Hero */
+.hero { padding-block: 56px 40px; display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 48px; align-items: end; border-bottom: 1px solid var(--line); }
+.hero h1 { font-family: var(--display); font-weight: 800; font-size: clamp(40px, 6.4vw, 76px); line-height: .95; letter-spacing: -.025em; margin: 12px 0 20px; text-wrap: balance; }
+.hero .headline { font-family: var(--display); font-weight: 500; font-size: clamp(20px, 2.4vw, 26px); line-height: 1.25; margin: 0 0 16px; max-width: 30ch; text-wrap: balance; }
+.hero .intro { color: var(--muted); max-width: 58ch; margin: 0; }
+.contact { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 24px; align-items: center; }
+.contact a, .contact button { font-family: var(--mono); font-size: 14px; }
+.email { display: inline-flex; gap: 8px; align-items: center; }
+.email code { font-family: var(--mono); font-size: 14px; user-select: all; }
+.copy { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 6px; padding: 3px 9px; cursor: pointer; font-family: var(--mono); font-size: 12px; }
+.copy:hover { border-color: var(--accent); }
+.ledger { display: grid; gap: 0; border-top: 2px solid var(--ink); }
+.ledger div { display: grid; grid-template-columns: 9.5ch minmax(0, 1fr); gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.ledger b { font-family: var(--display); font-weight: 700; font-size: 22px; font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.ledger span { color: var(--muted); font-size: 14px; line-height: 1.4; }
+
+/* Section heads */
+.sec { padding-block: 44px 8px; }
+.sec-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
+.sec-head h2 { font-family: var(--display); font-weight: 700; font-size: 30px; letter-spacing: -.015em; margin: 0; }
+
+/* Projects */
+.proj { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 32px; padding-block: 32px; border-top: 1px solid var(--line); }
+.rail { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+.status { display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+.status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.status.live { background: var(--live-soft); color: var(--live); }
+.status.analysis { background: var(--warn-soft); color: var(--warn); }
+.where { font-size: 14px; color: var(--ink); font-weight: 600; }
+.year { font-family: var(--mono); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.stack { display: flex; flex-wrap: wrap; gap: 6px; }
+.stack span { font-family: var(--mono); font-size: 11.5px; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 2px 7px; }
+.case h3 { font-family: var(--display); font-weight: 700; font-size: clamp(24px, 3vw, 32px); line-height: 1.1; letter-spacing: -.02em; margin: 0 0 6px; text-wrap: balance; }
+.tagline { color: var(--muted); margin: 0 0 20px; font-size: 17px; }
+.pbo { display: grid; gap: 14px; margin: 0; max-width: 68ch; }
+.pbo div { display: grid; grid-template-columns: 8ch minmax(0, 1fr); gap: 14px; }
+.pbo dt { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding-top: 3px; }
+.pbo dd { margin: 0; }
+.nums { display: flex; flex-wrap: wrap; gap: 10px 28px; margin: 22px 0 0; padding: 16px 0 0; border-top: 1px dashed var(--line); }
+.nums div { display: flex; flex-direction: column; min-width: 0; }
+.nums b { font-family: var(--display); font-weight: 700; font-size: 24px; font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.nums span { font-size: 13px; color: var(--muted); max-width: 22ch; line-height: 1.35; }
+.links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.links a { font-family: var(--mono); font-size: 13px; text-decoration: none; border: 1px solid var(--accent); padding: 6px 12px; border-radius: 6px; }
+.links a:hover { background: var(--accent); color: var(--bg); }
+.links a::after { content: " ↗"; }
+.note { font-size: 13px; color: var(--muted); margin-top: 20px; font-style: italic; }
+
+/* Experience */
+.timeline { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; margin-top: 12px; }
+.timeline h4 { grid-column: 1 / -1; margin: 22px 0 4px; font-family: var(--mono); font-weight: 500; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.role { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.role strong { font-weight: 600; }
+.role .org { color: var(--muted); font-size: 14px; grid-column: 1; }
+.role .when { font-family: var(--mono); font-size: 12.5px; color: var(--muted); grid-row: 1; grid-column: 2; font-variant-numeric: tabular-nums; white-space: nowrap; }
+footer { padding-block: 48px 64px; color: var(--muted); font-size: 14px; }
+
+/* Owner editing */
+.edit-bar { position: fixed; right: max(16px, calc(env(safe-area-inset-right, 0px) + 16px)); bottom: calc(env(safe-area-inset-bottom, 0px) + 16px); display: flex; gap: 8px; align-items: center; z-index: 20; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 8px; box-shadow: 0 6px 24px rgba(0,0,0,.12); flex-wrap: wrap; max-width: calc(100vw - 32px); }
+.edit-bar .msg { font-size: 13px; color: var(--muted); padding: 0 6px; }
+.btn { font: 600 14px var(--body); border-radius: 7px; padding: 8px 14px; cursor: pointer; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn.danger { color: #c0392b; }
+.btn:disabled { opacity: .5; cursor: default; }
+.tools { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.tools .btn { padding: 5px 10px; font-size: 13px; }
+.add-card { width: 100%; border: 2px dashed var(--line); background: transparent; color: var(--accent); font: 600 16px var(--body); padding: 28px; border-radius: 10px; cursor: pointer; margin-top: 8px; }
+.add-card:hover { border-color: var(--accent); }
+.overlay { position: fixed; inset: 0; background: rgba(10,12,16,.5); z-index: 30; display: flex; justify-content: center; align-items: flex-start; overflow-y: auto; padding: calc(env(safe-area-inset-top, 0px) + 24px) max(16px, env(safe-area-inset-right, 0px)) 24px max(16px, env(safe-area-inset-left, 0px)); }
+.sheet { background: var(--surface); color: var(--ink); width: 100%; max-width: 640px; border-radius: 12px; padding: 24px; display: grid; gap: 14px; }
+.sheet h3 { font-family: var(--display); margin: 0; font-size: 24px; }
+.field { display: grid; gap: 5px; }
+.field label { font-size: 13px; font-weight: 600; }
+.field small { color: var(--muted); font-size: 12px; }
+.field input, .field textarea, .field select { font: 15px var(--body); padding: 9px 11px; border: 1px solid var(--line); border-radius: 7px; background: var(--bg); color: var(--ink); width: 100%; }
+.field textarea { min-height: 76px; resize: vertical; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.sheet .actions { display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
+.err { color: #c0392b; font-size: 13px; }
+
+@media (max-width: 760px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-block: 36px 32px; }
+  .proj { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .rail { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+  .timeline { grid-template-columns: minmax(0, 1fr); }
+  .pbo div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .row2 { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .proj { animation: rise .5s ease both; }
+  @keyframes rise { from { transform: translateY(8px); } to { transform: none; } }
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script type="application/json" id="portfolio-data">
+{
+  "profile": {
+    "name": "Manu S Nair",
+    "role": "Partnerships manager · Product builder",
+    "headline": "I run B2B partnerships by day, and build working AI prototypes with Claude for the problems I see.",
+    "intro": "Four years in study-abroad and student-housing partnerships, managing Amber's biggest partner accounts. Along the way I started vibe coding: writing PRDs, prototyping with Claude in an AI coding IDE, and testing before handing over. I'm looking for PM roles where knowing the customer and building the thing both count.",
+    "email": "manu.s.nair788@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/manu-nair-667896194",
+    "github": "https://github.com/YoyYoBanta",
+    "ledger": [
+      {
+        "v": "₹7 Cr",
+        "l": "partner revenue at Amber across 2 seasons"
+      },
+      {
+        "v": "₹2.4 Cr+",
+        "l": "revenue generated at Leverage Edu"
+      },
+      {
+        "v": "Ace",
+        "l": "Ace of Amber 2025, for one of the highest revenues that year"
+      },
+      {
+        "v": "Top Fellow",
+        "l": "Next Leap Product Management Fellowship"
+      }
+    ],
+    "experience": [
+      {
+        "role": "Manager, Partnerships",
+        "org": "Amber",
+        "when": "Jan 2026 – Now"
+      },
+      {
+        "role": "Senior Partnerships Executive",
+        "org": "Amber",
+        "when": "Dec 2024 – Dec 2025"
+      },
+      {
+        "role": "Key Account Manager",
+        "org": "Leverage Edu",
+        "when": "Jul 2023 – Nov 2024"
+      },
+      {
+        "role": "Business Development Associate",
+        "org": "Leverage Edu",
+        "when": "Aug 2022 – Jun 2023"
+      }
+    ],
+    "education": [
+      {
+        "role": "Product Management Fellowship, Top Fellow",
+        "org": "Next Leap",
+        "when": "2026"
+      },
+      {
+        "role": "BBA (IT), GPA 3.2/4.0",
+        "org": "Lovely Professional University",
+        "when": "2019 – 2022"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "poai",
+      "title": "POAI",
+      "tagline": "Partner requests in Slack become approved WhatsApp replies.",
+      "where": "At Amber · internal tool",
+      "status": "Prototype on staging",
+      "statusKind": "mvp",
+      "year": "2026",
+      "problem": "Partner requests landed in Slack, and the team rewrote each one by hand into a WhatsApp message for the partner's group.",
+      "built": "I wrote the PRD (problem, success metrics, user roles, prioritised requirements, user flow, phased roadmap, risks) and built a working prototype with Claude in an AI coding IDE. It reads the Slack request, pulls out the details, drafts the WhatsApp reply and puts it in an approval queue for the account manager, plus a WhatsApp gateway that sends approved messages.",
+      "outcome": "Handed to Amber's DevOps team, who now have it on staging.",
+      "metrics": [
+        {
+          "v": "10",
+          "l": "prioritised functional requirements in the PRD"
+        },
+        {
+          "v": "4",
+          "l": "user roles mapped, from agent to partner"
+        }
+      ],
+      "stack": [
+        "Next.js",
+        "Supabase",
+        "Groq LLM",
+        "WhatsApp gateway"
+      ],
+      "links": [
+        {
+          "label": "Code",
+          "url": "https://github.com/YoyYoBanta/Amber-flow"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "voice-agent",
+      "title": "AI calling agent",
+      "tagline": "The call flow and logic behind Amber's AI calling agent for partner-referred students.",
+      "where": "At Amber · B2B outreach",
+      "status": "Prototype → live",
+      "statusKind": "live",
+      "year": "2026",
+      "problem": "Partner consultancies refer students who need housing abroad, and each one needs a first call to check intent and capture what they need.",
+      "built": "A working demo in ElevenLabs showing how the call should go: the conversation flow, the qualification questions and the logic between them.",
+      "outcome": "The demo set the flow for the production agent, which runs on Bluemachines. I also selected the voice it uses.",
+      "metrics": [],
+      "stack": [
+        "ElevenLabs",
+        "Bluemachines",
+        "Conversation design"
+      ],
+      "links": [],
+      "note": "Internal to Amber, so there's no public demo. Happy to walk through the flow in a call."
+    },
+    {
+      "id": "ajio-decide",
+      "title": "AJIO Decide",
+      "tagline": "Helping fashion shoppers finish the decision their wishlist started.",
+      "where": "Next Leap capstone · Top Fellow",
+      "status": "Live MVP",
+      "statusKind": "mvp",
+      "year": "2026",
+      "problem": "Shoppers save items and never decide. I framed a wishlisted item as an unfinished decision, and set Decision Resolution Rate as the outcome to move.",
+      "built": "A discovery engine that screened public reviews and ranked buying blockers, five user interviews, RICE prioritisation of five ideas, then an MVP that gives a Buy, Park it or Not for you verdict with a confidence level.",
+      "outcome": "Interviews surfaced blockers reviews miss: comparing options and wanting someone's approval (4 of 5 people each). The KPI tree models wishlist conversion moving from about 12% to 16%.",
+      "metrics": [
+        {
+          "v": "5,451",
+          "l": "reviews screened down to 204 relevant ones"
+        },
+        {
+          "v": "5",
+          "l": "user interviews"
+        },
+        {
+          "v": "12% → 16%",
+          "l": "modelled wishlist conversion"
+        }
+      ],
+      "stack": [
+        "Next.js",
+        "Groq LLMs",
+        "Render",
+        "Vercel"
+      ],
+      "links": [
+        {
+          "label": "Live MVP",
+          "url": "https://ajio-decide.vercel.app/"
+        },
+        {
+          "label": "Discovery engine",
+          "url": "https://ajio-discovery-engine.onrender.com/"
+        },
+        {
+          "label": "Code",
+          "url": "https://github.com/YoyYoBanta/ajio-decide"
+        }
+      ],
+      "note": "The discovery engine runs on a free server, so it can take up to a minute to wake up."
+    },
+    {
+      "id": "job-search-copilot",
+      "title": "Job Search Copilot",
+      "tagline": "A personal AI app that finds, scores and tracks PM job openings.",
+      "where": "Personal · AI product",
+      "status": "In progress",
+      "statusKind": "mvp",
+      "year": "2026",
+      "problem": "Applying to jobs one by one is slow, and mass-applying with bots gets accounts banned and mostly gets rejected.",
+      "built": "A spec-first build: product spec, a six-phase plan with acceptance criteria for each phase, then a Claude-assisted build. It pulls openings from public job boards, filters them for India and product roles, and will score each one against my resume. Every application is still sent by me.",
+      "outcome": "Phase 1 passed all 6 acceptance tests on a live deployment (login, access control and data security), with automated checks running on every change.",
+      "metrics": [
+        {
+          "v": "6 / 6",
+          "l": "Phase 1 acceptance tests passed"
+        },
+        {
+          "v": "6",
+          "l": "planned release phases"
+        }
+      ],
+      "stack": [
+        "Next.js",
+        "Supabase",
+        "Vercel",
+        "GitHub Actions"
+      ],
+      "links": [
+        {
+          "label": "Code",
+          "url": "https://github.com/YoyYoBanta/Job-Search-Copilot"
+        }
+      ],
+      "note": "The app itself is login-only, since it holds my resume."
+    },
+    {
+      "id": "cricfield",
+      "title": "Cricfield",
+      "tagline": "A new metric that values cricket fielding in runs.",
+      "where": "Personal · sports analytics",
+      "status": "Analysis",
+      "statusKind": "analysis",
+      "year": "2026",
+      "problem": "Batting and bowling are measured in runs, but fielding has no common scale, so good fielders are hard to compare.",
+      "built": "FRAA (Fielding Runs Above Average), a metric that puts fielding on the same runs scale as batting and bowling, applied to every IPL match from 2008 to 2026.",
+      "outcome": "Ranked 528 fielders by runs and win probability saved. The rankings held steady across five different assumption sets, and I documented the blind spots, such as ground fielding missing from the source data.",
+      "metrics": [
+        {
+          "v": "1,243",
+          "l": "IPL matches analysed"
+        },
+        {
+          "v": "528",
+          "l": "fielders ranked"
+        },
+        {
+          "v": "0.96–0.99",
+          "l": "rank correlation across 5 scenarios"
+        }
+      ],
+      "stack": [
+        "Data analysis",
+        "Metric design"
+      ],
+      "links": [
+        {
+          "label": "Code",
+          "url": "https://github.com/YoyYoBanta/Cricfield"
+        }
+      ],
+      "note": ""
+    },
+    {
+      "id": "ai-eats",
+      "title": "AI-Eats",
+      "tagline": "A restaurant recommender built on Zomato data.",
+      "where": "Personal · first build",
+      "status": "Prototype",
+      "statusKind": "mvp",
+      "year": "",
+      "problem": "Picking a restaurant from hundreds of listings takes longer than it should.",
+      "built": "A five-stage pipeline: data ingestion, user input, an integration layer, LLM recommendation and display.",
+      "outcome": "My first deployed project, with the backend on Render and the frontend on Vercel. It's where I learned to ship end to end.",
+      "metrics": [],
+      "stack": [
+        "LLM",
+        "Render",
+        "Vercel"
+      ],
+      "links": [],
+      "note": ""
+    }
+  ]
+}
+</script>
+<script id="app-js">
+(function () {
+  var dataEl = document.getElementById("portfolio-data");
+  var state;
+  try { state = JSON.parse(dataEl.textContent); } catch (e) { state = { profile: {}, projects: [] }; }
+  try {
+    var stash = sessionStorage.getItem("portfolio-draft");
+    if (stash) { sessionStorage.removeItem("portfolio-draft"); }
+  } catch (e) {}
+
+  var canEdit = false, editing = false, dirty = false, artifactNs = null, saving = false, barMsg = "";
+
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function safeUrl(u) { u = String(u || "").trim(); return /^https?:\/\//i.test(u) ? u : ""; }
+
+  function renderProject(p, i, n) {
+    var kind = p.statusKind === "live" ? "live" : (p.statusKind === "analysis" ? "analysis" : "");
+    var stack = (p.stack || []).filter(Boolean).map(function (s) { return "<span>" + esc(s) + "</span>"; }).join("");
+    var metrics = (p.metrics || []).filter(function (m) { return m && m.v; }).map(function (m) {
+      return "<div><b>" + esc(m.v) + "</b><span>" + esc(m.l) + "</span></div>";
+    }).join("");
+    var links = (p.links || []).map(function (l) {
+      var u = safeUrl(l.url); if (!u) return "";
+      return '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(l.label || "Link") + "</a>";
+    }).join("");
+    var rows = [["Problem", p.problem], ["Built", p.built], ["Outcome", p.outcome]].filter(function (r) { return r[1]; })
+      .map(function (r) { return "<div><dt>" + r[0] + "</dt><dd>" + esc(r[1]) + "</dd></div>"; }).join("");
+    var tools = editing ? '<div class="tools">' +
+      '<button class="btn" data-act="edit" data-i="' + i + '">Edit</button>' +
+      '<button class="btn" data-act="up" data-i="' + i + '"' + (i === 0 ? " disabled" : "") + ' aria-label="Move up">↑</button>' +
+      '<button class="btn" data-act="down" data-i="' + i + '"' + (i === n - 1 ? " disabled" : "") + ' aria-label="Move down">↓</button>' +
+      '<button class="btn danger" data-act="del" data-i="' + i + '">Delete</button></div>' : "";
+    return '<article class="proj" id="' + esc(p.id) + '">' +
+      '<div class="rail">' +
+        (p.status ? '<span class="status ' + kind + '">' + esc(p.status) + "</span>" : "") +
+        (p.where ? '<span class="where">' + esc(p.where) + "</span>" : "") +
+        (p.year ? '<span class="year">' + esc(p.year) + "</span>" : "") +
+        (stack ? '<div class="stack">' + stack + "</div>" : "") + tools +
+      "</div>" +
+      '<div class="case">' +
+        "<h3>" + esc(p.title) + "</h3>" +
+        (p.tagline ? '<p class="tagline">' + esc(p.tagline) + "</p>" : "") +
+        (rows ? '<dl class="pbo">' + rows + "</dl>" : "") +
+        (metrics ? '<div class="nums">' + metrics + "</div>" : "") +
+        (links ? '<div class="links">' + links + "</div>" : "") +
+        (p.note ? '<p class="note">' + esc(p.note) + "</p>" : "") +
+      "</div></article>";
+  }
+
+  function renderRoles(list) {
+    return (list || []).map(function (r) {
+      return '<div class="role"><strong>' + esc(r.role) + '</strong><span class="when">' + esc(r.when) + '</span><span class="org">' + esc(r.org) + "</span></div>";
+    }).join("");
+  }
+
+  function render() {
+    var pr = state.profile || {};
+    var ledger = (pr.ledger || []).map(function (x) { return "<div><b>" + esc(x.v) + "</b><span>" + esc(x.l) + "</span></div>"; }).join("");
+    var projects = state.projects || [];
+    var html =
+      '<header class="wrap"><div class="hero">' +
+        "<div>" +
+          '<span class="label">' + esc(pr.role) + "</span>" +
+          "<h1>" + esc(pr.name) + "</h1>" +
+          '<p class="headline">' + esc(pr.headline) + "</p>" +
+          '<p class="intro">' + esc(pr.intro) + "</p>" +
+          (editing ? '<div class="tools" style="margin-top:14px"><button class="btn" data-act="profile">Edit intro</button></div>' : "") +
+          '<div class="contact">' +
+            '<span class="email"><code id="email-text">' + esc(pr.email) + '</code><button class="copy" id="copy-email" type="button">Copy</button></span>' +
+            (safeUrl(pr.linkedin) ? '<a href="' + esc(pr.linkedin) + '" target="_blank" rel="noopener">LinkedIn ↗</a>' : "") +
+            (safeUrl(pr.github) ? '<a href="' + esc(pr.github) + '" target="_blank" rel="noopener">GitHub ↗</a>' : "") +
+          "</div>" +
+        "</div>" +
+        '<div class="ledger" aria-label="Track record">' + ledger + "</div>" +
+      "</div></header>" +
+      '<main class="wrap">' +
+        '<section class="sec" aria-labelledby="work-h"><div class="sec-head"><h2 id="work-h">Things I’ve built</h2><span class="label">' + projects.length + " projects</span></div>" +
+          projects.map(function (p, i) { return renderProject(p, i, projects.length); }).join("") +
+          (editing ? '<button class="add-card" data-act="add">+ Add a project</button>' : "") +
+        "</section>" +
+        '<section class="sec" aria-labelledby="exp-h"><div class="sec-head"><h2 id="exp-h">Experience</h2></div>' +
+          '<div class="timeline"><h4>Work</h4>' + renderRoles(pr.experience) + "<h4>Education</h4>" + renderRoles(pr.education) + "</div>" +
+        "</section>" +
+      "</main>" +
+      '<footer class="wrap">' + esc(pr.name) + " · Pune, India · Reach me at " + esc(pr.email) + "</footer>" +
+      (canEdit ? renderBar() : "");
+    document.getElementById("app").innerHTML = html;
+  }
+
+  function renderBar() {
+    if (!editing) return '<div class="edit-bar"><button class="btn" data-act="start">Edit portfolio</button></div>';
+    return '<div class="edit-bar">' +
+      '<span class="msg" role="status">' + esc(barMsg || (dirty ? "Unsaved changes" : "Editing")) + "</span>" +
+      '<button class="btn" data-act="stop"' + (saving ? " disabled" : "") + ">" + (dirty ? "Discard" : "Done") + "</button>" +
+      '<button class="btn primary" data-act="save"' + (!dirty || saving ? " disabled" : "") + ">" + (saving ? "Publishing…" : "Publish changes") + "</button></div>";
+  }
+
+  // ---------- forms ----------
+  function linesToMetrics(t) { return String(t || "").split("\n").map(function (l) { var p = l.split("|"); return { v: (p[0] || "").trim(), l: (p.slice(1).join("|") || "").trim() }; }).filter(function (m) { return m.v; }); }
+  function linesToLinks(t) { return String(t || "").split("\n").map(function (l) { var p = l.split("|"); return { label: (p[0] || "").trim(), url: (p.slice(1).join("|") || "").trim() }; }).filter(function (x) { return x.label || x.url; }); }
+
+  function field(id, label, value, opts) {
+    opts = opts || {};
+    var input = opts.area
+      ? '<textarea id="' + id + '">' + esc(value) + "</textarea>"
+      : opts.select
+        ? '<select id="' + id + '">' + opts.select.map(function (o) { return '<option value="' + o[0] + '"' + (o[0] === value ? " selected" : "") + ">" + o[1] + "</option>"; }).join("") + "</select>"
+        : '<input id="' + id + '" value="' + esc(value) + '">';
+    return '<div class="field"><label for="' + id + '">' + label + "</label>" + input + (opts.hint ? "<small>" + opts.hint + "</small>" : "") + "</div>";
+  }
+
+  function openProjectForm(i) {
+    var p = i == null ? { title: "", tagline: "", where: "", status: "", statusKind: "mvp", year: "", problem: "", built: "", outcome: "", metrics: [], stack: [], links: [], note: "" } : state.projects[i];
+    var ov = document.createElement("div");
+    ov.className = "overlay";
+    ov.innerHTML = '<form class="sheet" id="proj-form" novalidate>' +
+      "<h3>" + (i == null ? "Add a project" : "Edit " + esc(p.title)) + "</h3>" +
+      field("f-title", "Project name", p.title) +
+      field("f-tagline", "One-line summary", p.tagline) +
+      '<div class="row2">' + field("f-where", "Where", p.where, { hint: "e.g. At Amber · internal tool" }) + field("f-year", "Year", p.year) + "</div>" +
+      '<div class="row2">' + field("f-status", "Status label", p.status, { hint: "e.g. In daily use, Live MVP" }) +
+        field("f-kind", "Status colour", p.statusKind, { select: [["live", "Green · in use"], ["mvp", "Blue · built / MVP"], ["analysis", "Amber · analysis / research"]] }) + "</div>" +
+      field("f-problem", "Problem", p.problem, { area: true }) +
+      field("f-built", "What I built", p.built, { area: true }) +
+      field("f-outcome", "Outcome", p.outcome, { area: true }) +
+      field("f-metrics", "Numbers", (p.metrics || []).map(function (m) { return m.v + " | " + m.l; }).join("\n"), { area: true, hint: "One per line: number | what it means. Example: 6–10 | teammates using it" }) +
+      field("f-stack", "Tools", (p.stack || []).join(", "), { hint: "Comma separated" }) +
+      field("f-links", "Links", (p.links || []).map(function (l) { return l.label + " | " + l.url; }).join("\n"), { area: true, hint: "One per line: label | https://… link" }) +
+      field("f-note", "Small note (optional)", p.note) +
+      '<p class="err" id="f-err" hidden></p>' +
+      '<div class="actions"><button type="button" class="btn" id="f-cancel">Cancel</button><button type="submit" class="btn primary">' + (i == null ? "Add project" : "Save project") + "</button></div></form>";
+    document.body.appendChild(ov);
+    ov.querySelector("#f-title").focus();
+    ov.querySelector("#f-cancel").onclick = function () { ov.remove(); };
+    ov.addEventListener("click", function (e) { if (e.target === ov) ov.remove(); });
+    ov.querySelector("form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var g = function (id) { return ov.querySelector("#" + id).value.trim(); };
+      var err = ov.querySelector("#f-err");
+      if (!g("f-title")) { err.textContent = "Add a project name so the card has a heading."; err.hidden = false; return; }
+      var links = linesToLinks(g("f-links"));
+      var bad = links.filter(function (l) { return !safeUrl(l.url); });
+      if (bad.length) { err.textContent = "Each link needs a full address starting with https://. Check: " + (bad[0].label || bad[0].url); err.hidden = false; return; }
+      var np = {
+        id: (i == null ? (g("f-title").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "project") + "-" + Date.now().toString(36) : p.id),
+        title: g("f-title"), tagline: g("f-tagline"), where: g("f-where"), status: g("f-status"), statusKind: g("f-kind"), year: g("f-year"),
+        problem: g("f-problem"), built: g("f-built"), outcome: g("f-outcome"),
+        metrics: linesToMetrics(g("f-metrics")),
+        stack: g("f-stack").split(",").map(function (s) { return s.trim(); }).filter(Boolean),
+        links: links, note: g("f-note")
+      };
+      if (i == null) state.projects.push(np); else state.projects[i] = np;
+      dirty = true; barMsg = ""; ov.remove(); render();
+    });
+  }
+
+  function openProfileForm() {
+    var pr = state.profile;
+    var ov = document.createElement("div");
+    ov.className = "overlay";
+    ov.innerHTML = '<form class="sheet" novalidate><h3>Edit intro</h3>' +
+      field("p-role", "Label above your name", pr.role) +
+      field("p-headline", "Headline", pr.headline, { area: true }) +
+      field("p-intro", "Intro paragraph", pr.intro, { area: true }) +
+      field("p-ledger", "Track record", (pr.ledger || []).map(function (x) { return x.v + " | " + x.l; }).join("\n"), { area: true, hint: "One per line: number | what it means" }) +
+      '<div class="actions"><button type="button" class="btn" id="p-cancel">Cancel</button><button type="submit" class="btn primary">Save intro</button></div></form>';
+    document.body.appendChild(ov);
+    ov.querySelector("#p-cancel").onclick = function () { ov.remove(); };
+    ov.addEventListener("click", function (e) { if (e.target === ov) ov.remove(); });
+    ov.querySelector("form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var g = function (id) { return ov.querySelector("#" + id).value.trim(); };
+      pr.role = g("p-role"); pr.headline = g("p-headline"); pr.intro = g("p-intro");
+      pr.ledger = linesToMetrics(g("p-ledger")).map(function (m) { return { v: m.v, l: m.l }; });
+      dirty = true; barMsg = ""; ov.remove(); render();
+    });
+  }
+
+  // ---------- publish ----------
+  var RESET = ":root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px/1.4 system-ui,-apple-system,sans-serif}img{max-width:100%}[hidden]{display:none!important}";
+  function buildDoc() {
+    var keep = ["title", 'meta[name="claude:viewport-fit-sides"]', 'link[rel="preconnect"]', 'link[rel="stylesheet"]', "style"];
+    var parts = [];
+    keep.forEach(function (sel) { document.querySelectorAll("body " + sel).forEach(function (el) { parts.push(el.outerHTML); }); });
+    var json = JSON.stringify(state, null, 2).replace(/</g, "\\u003c");
+    parts.push('<div id="app"></div>');
+    parts.push('<script type="application/json" id="portfolio-data">\n' + json + "\n<\/script>");
+    parts.push(document.getElementById("app-js").outerHTML);
+    return '<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>' + RESET + "</style></head><body>" + parts.join("\n") + "</body></html>";
+  }
+
+  function publish() {
+    if (!artifactNs || saving) return;
+    saving = true; barMsg = "Publishing…"; render();
+    artifactNs.publish(buildDoc()).then(function () {
+      barMsg = "Published"; dirty = false; saving = false; render();
+    }, function (err) {
+      saving = false;
+      var code = err && err.code;
+      if (code === "conflict") { barMsg = "A newer version was published elsewhere. Reloading it."; }
+      else if (code === "not_writer" || code === "not_granted" || code === "not_declared" || code === "consent_required") { canEdit = false; editing = false; barMsg = ""; }
+      else if (code === "rate_limited") { barMsg = "Too many saves in a row. Wait a minute, then publish again."; }
+      else if (code === "too_large") { barMsg = "The page is too large to save. Shorten some project text."; }
+      else { barMsg = "Couldn't publish. Check your connection and try again."; }
+      render();
+    });
+  }
+
+  // ---------- events ----------
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest("[data-act], #copy-email");
+    if (!t) return;
+    if (t.id === "copy-email") {
+      var txt = (state.profile || {}).email || "";
+      var done = function () { t.textContent = "Copied"; setTimeout(function () { t.textContent = "Copy"; }, 1600); };
+      var fallback = function () { var r = document.createRange(); r.selectNodeContents(document.getElementById("email-text")); var s = getSelection(); s.removeAllRanges(); s.addRange(r); t.textContent = "Selected"; };
+      try { navigator.clipboard.writeText(txt).then(done, fallback); } catch (er) { fallback(); }
+      return;
+    }
+    var act = t.getAttribute("data-act"), i = Number(t.getAttribute("data-i"));
+    var P = state.projects;
+    if (act === "start") { editing = true; barMsg = ""; render(); }
+    else if (act === "stop") {
+      if (dirty) { try { state = JSON.parse(dataEl.textContent); } catch (er) {} dirty = false; }
+      editing = false; barMsg = ""; render();
+    }
+    else if (act === "save") publish();
+    else if (act === "add") openProjectForm(null);
+    else if (act === "edit") openProjectForm(i);
+    else if (act === "profile") openProfileForm();
+    else if (act === "up" && i > 0) { var a = P[i - 1]; P[i - 1] = P[i]; P[i] = a; dirty = true; barMsg = ""; render(); }
+    else if (act === "down" && i < P.length - 1) { var b = P[i + 1]; P[i + 1] = P[i]; P[i] = b; dirty = true; barMsg = ""; render(); }
+    else if (act === "del") {
+      if (t.getAttribute("data-confirm") === "1") { P.splice(i, 1); dirty = true; barMsg = ""; render(); }
+      else { t.setAttribute("data-confirm", "1"); t.textContent = "Tap again to delete"; }
+    }
+  });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") { var ov = document.querySelector(".overlay"); if (ov) ov.remove(); } });
+  window.addEventListener("beforeunload", function () { if (dirty) { try { sessionStorage.setItem("portfolio-draft", "1"); } catch (er) {} } });
+
+  render();
+
+})();
+</script>
+
+</body>
+</html>
