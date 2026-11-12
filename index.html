@@ -106,28 +106,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .role .when { font-family: var(--mono); font-size: 12.5px; color: var(--muted); grid-row: 1; grid-column: 2; font-variant-numeric: tabular-nums; white-space: nowrap; }
 footer { padding-block: 48px 64px; color: var(--muted); font-size: 14px; }
 
-/* Owner editing */
-.edit-bar { position: fixed; right: max(16px, calc(env(safe-area-inset-right, 0px) + 16px)); bottom: calc(env(safe-area-inset-bottom, 0px) + 16px); display: flex; gap: 8px; align-items: center; z-index: 20; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 8px; box-shadow: 0 6px 24px rgba(0,0,0,.12); flex-wrap: wrap; max-width: calc(100vw - 32px); }
-.edit-bar .msg { font-size: 13px; color: var(--muted); padding: 0 6px; }
-.btn { font: 600 14px var(--body); border-radius: 7px; padding: 8px 14px; cursor: pointer; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
-.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
-.btn.danger { color: #c0392b; }
-.btn:disabled { opacity: .5; cursor: default; }
-.tools { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
-.tools .btn { padding: 5px 10px; font-size: 13px; }
-.add-card { width: 100%; border: 2px dashed var(--line); background: transparent; color: var(--accent); font: 600 16px var(--body); padding: 28px; border-radius: 10px; cursor: pointer; margin-top: 8px; }
-.add-card:hover { border-color: var(--accent); }
-.overlay { position: fixed; inset: 0; background: rgba(10,12,16,.5); z-index: 30; display: flex; justify-content: center; align-items: flex-start; overflow-y: auto; padding: calc(env(safe-area-inset-top, 0px) + 24px) max(16px, env(safe-area-inset-right, 0px)) 24px max(16px, env(safe-area-inset-left, 0px)); }
-.sheet { background: var(--surface); color: var(--ink); width: 100%; max-width: 640px; border-radius: 12px; padding: 24px; display: grid; gap: 14px; }
-.sheet h3 { font-family: var(--display); margin: 0; font-size: 24px; }
-.field { display: grid; gap: 5px; }
-.field label { font-size: 13px; font-weight: 600; }
-.field small { color: var(--muted); font-size: 12px; }
-.field input, .field textarea, .field select { font: 15px var(--body); padding: 9px 11px; border: 1px solid var(--line); border-radius: 7px; background: var(--bg); color: var(--ink); width: 100%; }
-.field textarea { min-height: 76px; resize: vertical; }
-.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.sheet .actions { display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
-.err { color: #c0392b; font-size: 13px; }
+/* Currently building */
+.wip-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; padding-top: 16px; border-top: 1px solid var(--line); }
+.wip { background: var(--surface); border: 1px dashed var(--line); border-radius: 12px; padding: 22px; min-width: 0; }
+.wip h3 { font-family: var(--display); font-weight: 700; font-size: 22px; letter-spacing: -.015em; margin: 12px 0 6px; }
+.wip .tagline { font-size: 15px; margin-bottom: 14px; }
+.wip .pbo div { grid-template-columns: 6ch minmax(0, 1fr); }
+.wip .pbo dd { font-size: 15px; }
+.status.wip-tag { background: var(--warn-soft); color: var(--warn); }
 
 @media (max-width: 760px) {
   .hero { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-block: 36px 32px; }
@@ -135,7 +121,7 @@ footer { padding-block: 48px 64px; color: var(--muted); font-size: 14px; }
   .rail { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
   .timeline { grid-template-columns: minmax(0, 1fr); }
   .pbo div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
-  .row2 { grid-template-columns: 1fr; }
+  .wip-grid { grid-template-columns: minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: no-preference) {
   .proj { animation: rise .5s ease both; }
@@ -210,61 +196,6 @@ footer { padding-block: 48px 64px; color: var(--muted); font-size: 14px; }
   },
   "projects": [
     {
-      "id": "poai",
-      "title": "POAI",
-      "tagline": "Partner requests in Slack become approved WhatsApp replies.",
-      "where": "At Amber · internal tool",
-      "status": "Prototype on staging",
-      "statusKind": "mvp",
-      "year": "2026",
-      "problem": "Partner requests landed in Slack, and the team rewrote each one by hand into a WhatsApp message for the partner's group.",
-      "built": "I wrote the PRD (problem, success metrics, user roles, prioritised requirements, user flow, phased roadmap, risks) and built a working prototype with Claude in an AI coding IDE. It reads the Slack request, pulls out the details, drafts the WhatsApp reply and puts it in an approval queue for the account manager, plus a WhatsApp gateway that sends approved messages.",
-      "outcome": "Handed to Amber's DevOps team, who now have it on staging.",
-      "metrics": [
-        {
-          "v": "10",
-          "l": "prioritised functional requirements in the PRD"
-        },
-        {
-          "v": "4",
-          "l": "user roles mapped, from agent to partner"
-        }
-      ],
-      "stack": [
-        "Next.js",
-        "Supabase",
-        "Groq LLM",
-        "WhatsApp gateway"
-      ],
-      "links": [
-        {
-          "label": "Code",
-          "url": "https://github.com/YoyYoBanta/Amber-flow"
-        }
-      ],
-      "note": ""
-    },
-    {
-      "id": "voice-agent",
-      "title": "AI calling agent",
-      "tagline": "The call flow and logic behind Amber's AI calling agent for partner-referred students.",
-      "where": "At Amber · B2B outreach",
-      "status": "Prototype → live",
-      "statusKind": "live",
-      "year": "2026",
-      "problem": "Partner consultancies refer students who need housing abroad, and each one needs a first call to check intent and capture what they need.",
-      "built": "A working demo in ElevenLabs showing how the call should go: the conversation flow, the qualification questions and the logic between them.",
-      "outcome": "The demo set the flow for the production agent, which runs on Bluemachines. I also selected the voice it uses.",
-      "metrics": [],
-      "stack": [
-        "ElevenLabs",
-        "Bluemachines",
-        "Conversation design"
-      ],
-      "links": [],
-      "note": "Internal to Amber, so there's no public demo. Happy to walk through the flow in a call."
-    },
-    {
       "id": "ajio-decide",
       "title": "AJIO Decide",
       "tagline": "Helping fashion shoppers finish the decision their wishlist started.",
@@ -309,7 +240,103 @@ footer { padding-block: 48px 64px; color: var(--muted); font-size: 14px; }
           "url": "https://github.com/YoyYoBanta/ajio-decide"
         }
       ],
-      "note": "The discovery engine runs on a free server, so it can take up to a minute to wake up."
+      "note": "The discovery engine runs on a free server, so it can take up to a minute to wake up.",
+      "group": "shipped"
+    },
+    {
+      "id": "poai",
+      "title": "POAI",
+      "tagline": "Partner requests in Slack become approved WhatsApp replies.",
+      "where": "At Amber · internal tool",
+      "status": "Prototype on staging",
+      "statusKind": "mvp",
+      "year": "2026",
+      "problem": "Partner requests landed in Slack, and the team rewrote each one by hand into a WhatsApp message for the partner's group.",
+      "built": "I wrote the PRD (problem, success metrics, user roles, prioritised requirements, user flow, phased roadmap, risks) and built a working prototype with Claude in an AI coding IDE. It reads the Slack request, pulls out the details, drafts the WhatsApp reply and puts it in an approval queue for the account manager, plus a multi-tenant WhatsApp gateway that sends the approved messages.",
+      "outcome": "Handed to Amber's DevOps team, who now have it on staging.",
+      "metrics": [
+        {
+          "v": "10",
+          "l": "prioritised functional requirements in the PRD"
+        },
+        {
+          "v": "4",
+          "l": "user roles mapped, from agent to partner"
+        }
+      ],
+      "stack": [
+        "Next.js",
+        "Supabase",
+        "Groq LLM",
+        "WhatsApp gateway"
+      ],
+      "links": [
+        {
+          "label": "Code",
+          "url": "https://github.com/YoyYoBanta/Amber-flow"
+        }
+      ],
+      "note": "",
+      "group": "shipped"
+    },
+    {
+      "id": "voice-agent",
+      "title": "AI calling agent",
+      "tagline": "The call flow and logic behind Amber's AI calling agent for partner-referred students.",
+      "where": "At Amber · B2B outreach",
+      "status": "Prototype → live",
+      "statusKind": "live",
+      "year": "2026",
+      "problem": "Partner consultancies refer students who need housing abroad, and each one needs a first call to check intent and capture what they need.",
+      "built": "A working demo in ElevenLabs showing how the call should go: the conversation flow, the qualification questions and the logic between them.",
+      "outcome": "The demo set the flow for the production agent, which runs on Bluemachines. I also selected the voice it uses.",
+      "metrics": [],
+      "stack": [
+        "ElevenLabs",
+        "Bluemachines",
+        "Conversation design"
+      ],
+      "links": [],
+      "note": "Internal to Amber, so there's no public demo. Happy to walk through the flow in a call.",
+      "group": "shipped"
+    },
+    {
+      "id": "cricfield",
+      "title": "Cricfield",
+      "tagline": "A new metric that values cricket fielding in runs.",
+      "where": "Personal · sports analytics",
+      "status": "Model complete",
+      "statusKind": "analysis",
+      "year": "2026",
+      "problem": "Batting and bowling are measured in runs, but fielding has no common scale, so good fielders are hard to compare.",
+      "built": "FRAA (Fielding Runs Above Average), a metric that puts fielding on the same runs scale as batting and bowling, applied to every IPL match from 2008 to 2026.",
+      "outcome": "Ranked 528 fielders by runs and win probability saved. The rankings held steady across five different assumption sets, and I documented the blind spots, such as ground fielding missing from the source data.",
+      "metrics": [
+        {
+          "v": "1,243",
+          "l": "IPL matches analysed"
+        },
+        {
+          "v": "528",
+          "l": "fielders ranked"
+        },
+        {
+          "v": "0.96–0.99",
+          "l": "rank correlation across 5 scenarios"
+        }
+      ],
+      "stack": [
+        "Data analysis",
+        "Metric design"
+      ],
+      "links": [
+        {
+          "label": "Code and model",
+          "url": "https://github.com/YoyYoBanta/cricfield"
+        }
+      ],
+      "note": "",
+      "group": "shipped"
     },
     {
       "id": "job-search-copilot",
@@ -344,63 +371,37 @@ footer { padding-block: 48px 64px; color: var(--muted); font-size: 14px; }
           "url": "https://github.com/YoyYoBanta/Job-Search-Copilot"
         }
       ],
-      "note": "The app itself is login-only, since it holds my resume."
+      "note": "The app itself is login-only, since it holds my resume.",
+      "group": "building",
+      "next": "Next: scoring each opening against my resume, then the application tracker."
     },
     {
-      "id": "cricfield",
-      "title": "Cricfield",
-      "tagline": "A new metric that values cricket fielding in runs.",
-      "where": "Personal · sports analytics",
-      "status": "Analysis",
-      "statusKind": "analysis",
+      "id": "mf-faq",
+      "group": "building",
+      "title": "Mutual Fund FAQ Assistant",
+      "tagline": "A facts-only assistant that answers mutual fund questions from official sources, with a citation every time.",
+      "where": "Personal · AI product (RAG)",
+      "status": "In progress",
+      "statusKind": "mvp",
       "year": "2026",
-      "problem": "Batting and bowling are measured in runs, but fielding has no common scale, so good fielders are hard to compare.",
-      "built": "FRAA (Fielding Runs Above Average), a metric that puts fielding on the same runs scale as batting and bowling, applied to every IPL match from 2008 to 2026.",
-      "outcome": "Ranked 528 fielders by runs and win probability saved. The rankings held steady across five different assumption sets, and I documented the blind spots, such as ground fielding missing from the source data.",
-      "metrics": [
-        {
-          "v": "1,243",
-          "l": "IPL matches analysed"
-        },
-        {
-          "v": "528",
-          "l": "fielders ranked"
-        },
-        {
-          "v": "0.96–0.99",
-          "l": "rank correlation across 5 scenarios"
-        }
-      ],
+      "problem": "People ask chatbots about mutual funds and get opinions or made-up numbers. A finance assistant has to stick to verifiable facts and refuse to give advice.",
+      "built": "A retrieval pipeline: it scrapes scheme pages, splits them into chunks, stores embeddings in a vector database and retrieves the most relevant ones for each question. Guardrails sort factual questions from advice requests, block personal data such as PAN and Aadhaar numbers, and refuse politely when needed. A scheduled job refreshes the data automatically.",
+      "outcome": "",
+      "next": "Next: tightening answer quality against the evaluation plan and putting it online.",
+      "metrics": [],
       "stack": [
-        "Data analysis",
-        "Metric design"
+        "Python",
+        "ChromaDB",
+        "Groq LLM",
+        "FastAPI",
+        "GitHub Actions"
       ],
       "links": [
         {
           "label": "Code",
-          "url": "https://github.com/YoyYoBanta/Cricfield"
+          "url": "https://github.com/YoyYoBanta/RAG"
         }
       ],
-      "note": ""
-    },
-    {
-      "id": "ai-eats",
-      "title": "AI-Eats",
-      "tagline": "A restaurant recommender built on Zomato data.",
-      "where": "Personal · first build",
-      "status": "Prototype",
-      "statusKind": "mvp",
-      "year": "",
-      "problem": "Picking a restaurant from hundreds of listings takes longer than it should.",
-      "built": "A five-stage pipeline: data ingestion, user input, an integration layer, LLM recommendation and display.",
-      "outcome": "My first deployed project, with the backend on Render and the frontend on Vercel. It's where I learned to ship end to end.",
-      "metrics": [],
-      "stack": [
-        "LLM",
-        "Render",
-        "Vercel"
-      ],
-      "links": [],
       "note": ""
     }
   ]
@@ -408,246 +409,82 @@ footer { padding-block: 48px 64px; color: var(--muted); font-size: 14px; }
 </script>
 <script id="app-js">
 (function () {
-  var dataEl = document.getElementById("portfolio-data");
   var state;
-  try { state = JSON.parse(dataEl.textContent); } catch (e) { state = { profile: {}, projects: [] }; }
-  try {
-    var stash = sessionStorage.getItem("portfolio-draft");
-    if (stash) { sessionStorage.removeItem("portfolio-draft"); }
-  } catch (e) {}
-
-  var canEdit = false, editing = false, dirty = false, artifactNs = null, saving = false, barMsg = "";
-
+  try { state = JSON.parse(document.getElementById("portfolio-data").textContent); } catch (e) { state = { profile: {}, projects: [] }; }
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function safeUrl(u) { u = String(u || "").trim(); return /^https?:\/\//i.test(u) ? u : ""; }
+  function linksOf(p) {
+    return (p.links || []).map(function (l) { var u = safeUrl(l.url); return u ? '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(l.label || "Link") + "</a>" : ""; }).join("");
+  }
+  function stackOf(p) { return (p.stack || []).filter(Boolean).map(function (s) { return "<span>" + esc(s) + "</span>"; }).join(""); }
 
-  function renderProject(p, i, n) {
+  function renderShipped(p) {
     var kind = p.statusKind === "live" ? "live" : (p.statusKind === "analysis" ? "analysis" : "");
-    var stack = (p.stack || []).filter(Boolean).map(function (s) { return "<span>" + esc(s) + "</span>"; }).join("");
-    var metrics = (p.metrics || []).filter(function (m) { return m && m.v; }).map(function (m) {
-      return "<div><b>" + esc(m.v) + "</b><span>" + esc(m.l) + "</span></div>";
-    }).join("");
-    var links = (p.links || []).map(function (l) {
-      var u = safeUrl(l.url); if (!u) return "";
-      return '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(l.label || "Link") + "</a>";
-    }).join("");
+    var metrics = (p.metrics || []).filter(function (m) { return m && m.v; }).map(function (m) { return "<div><b>" + esc(m.v) + "</b><span>" + esc(m.l) + "</span></div>"; }).join("");
     var rows = [["Problem", p.problem], ["Built", p.built], ["Outcome", p.outcome]].filter(function (r) { return r[1]; })
       .map(function (r) { return "<div><dt>" + r[0] + "</dt><dd>" + esc(r[1]) + "</dd></div>"; }).join("");
-    var tools = editing ? '<div class="tools">' +
-      '<button class="btn" data-act="edit" data-i="' + i + '">Edit</button>' +
-      '<button class="btn" data-act="up" data-i="' + i + '"' + (i === 0 ? " disabled" : "") + ' aria-label="Move up">↑</button>' +
-      '<button class="btn" data-act="down" data-i="' + i + '"' + (i === n - 1 ? " disabled" : "") + ' aria-label="Move down">↓</button>' +
-      '<button class="btn danger" data-act="del" data-i="' + i + '">Delete</button></div>' : "";
-    return '<article class="proj" id="' + esc(p.id) + '">' +
-      '<div class="rail">' +
-        (p.status ? '<span class="status ' + kind + '">' + esc(p.status) + "</span>" : "") +
-        (p.where ? '<span class="where">' + esc(p.where) + "</span>" : "") +
-        (p.year ? '<span class="year">' + esc(p.year) + "</span>" : "") +
-        (stack ? '<div class="stack">' + stack + "</div>" : "") + tools +
-      "</div>" +
-      '<div class="case">' +
-        "<h3>" + esc(p.title) + "</h3>" +
-        (p.tagline ? '<p class="tagline">' + esc(p.tagline) + "</p>" : "") +
-        (rows ? '<dl class="pbo">' + rows + "</dl>" : "") +
-        (metrics ? '<div class="nums">' + metrics + "</div>" : "") +
-        (links ? '<div class="links">' + links + "</div>" : "") +
-        (p.note ? '<p class="note">' + esc(p.note) + "</p>" : "") +
-      "</div></article>";
+    var links = linksOf(p), stack = stackOf(p);
+    return '<article class="proj" id="' + esc(p.id) + '"><div class="rail">' +
+      (p.status ? '<span class="status ' + kind + '">' + esc(p.status) + "</span>" : "") +
+      (p.where ? '<span class="where">' + esc(p.where) + "</span>" : "") +
+      (p.year ? '<span class="year">' + esc(p.year) + "</span>" : "") +
+      (stack ? '<div class="stack">' + stack + "</div>" : "") + "</div>" +
+      '<div class="case"><h3>' + esc(p.title) + "</h3>" +
+      (p.tagline ? '<p class="tagline">' + esc(p.tagline) + "</p>" : "") +
+      (rows ? '<dl class="pbo">' + rows + "</dl>" : "") +
+      (metrics ? '<div class="nums">' + metrics + "</div>" : "") +
+      (links ? '<div class="links">' + links + "</div>" : "") +
+      (p.note ? '<p class="note">' + esc(p.note) + "</p>" : "") + "</div></article>";
+  }
+
+  function renderBuilding(p) {
+    var done = p.outcome ? p.built + " " + p.outcome : p.built;
+    var links = linksOf(p), stack = stackOf(p);
+    return '<article class="wip" id="' + esc(p.id) + '">' +
+      '<span class="status wip-tag">In progress</span>' +
+      "<h3>" + esc(p.title) + "</h3>" +
+      (p.tagline ? '<p class="tagline">' + esc(p.tagline) + "</p>" : "") +
+      '<dl class="pbo"><div><dt>Works</dt><dd>' + esc(done) + "</dd></div>" +
+      (p.next ? "<div><dt>Next</dt><dd>" + esc((function (t) { return t.charAt(0).toUpperCase() + t.slice(1); })(p.next.replace(/^Next:\s*/, ""))) + "</dd></div>" : "") + "</dl>" +
+      (stack ? '<div class="stack" style="margin-top:16px">' + stack + "</div>" : "") +
+      (links ? '<div class="links">' + links + "</div>" : "") +
+      (p.note ? '<p class="note">' + esc(p.note) + "</p>" : "") + "</article>";
   }
 
   function renderRoles(list) {
-    return (list || []).map(function (r) {
-      return '<div class="role"><strong>' + esc(r.role) + '</strong><span class="when">' + esc(r.when) + '</span><span class="org">' + esc(r.org) + "</span></div>";
-    }).join("");
+    return (list || []).map(function (r) { return '<div class="role"><strong>' + esc(r.role) + '</strong><span class="when">' + esc(r.when) + '</span><span class="org">' + esc(r.org) + "</span></div>"; }).join("");
   }
 
-  function render() {
-    var pr = state.profile || {};
-    var ledger = (pr.ledger || []).map(function (x) { return "<div><b>" + esc(x.v) + "</b><span>" + esc(x.l) + "</span></div>"; }).join("");
-    var projects = state.projects || [];
-    var html =
-      '<header class="wrap"><div class="hero">' +
-        "<div>" +
-          '<span class="label">' + esc(pr.role) + "</span>" +
-          "<h1>" + esc(pr.name) + "</h1>" +
-          '<p class="headline">' + esc(pr.headline) + "</p>" +
-          '<p class="intro">' + esc(pr.intro) + "</p>" +
-          (editing ? '<div class="tools" style="margin-top:14px"><button class="btn" data-act="profile">Edit intro</button></div>' : "") +
-          '<div class="contact">' +
-            '<span class="email"><code id="email-text">' + esc(pr.email) + '</code><button class="copy" id="copy-email" type="button">Copy</button></span>' +
-            (safeUrl(pr.linkedin) ? '<a href="' + esc(pr.linkedin) + '" target="_blank" rel="noopener">LinkedIn ↗</a>' : "") +
-            (safeUrl(pr.github) ? '<a href="' + esc(pr.github) + '" target="_blank" rel="noopener">GitHub ↗</a>' : "") +
-          "</div>" +
-        "</div>" +
-        '<div class="ledger" aria-label="Track record">' + ledger + "</div>" +
-      "</div></header>" +
-      '<main class="wrap">' +
-        '<section class="sec" aria-labelledby="work-h"><div class="sec-head"><h2 id="work-h">Things I’ve built</h2><span class="label">' + projects.length + " projects</span></div>" +
-          projects.map(function (p, i) { return renderProject(p, i, projects.length); }).join("") +
-          (editing ? '<button class="add-card" data-act="add">+ Add a project</button>' : "") +
-        "</section>" +
-        '<section class="sec" aria-labelledby="exp-h"><div class="sec-head"><h2 id="exp-h">Experience</h2></div>' +
-          '<div class="timeline"><h4>Work</h4>' + renderRoles(pr.experience) + "<h4>Education</h4>" + renderRoles(pr.education) + "</div>" +
-        "</section>" +
-      "</main>" +
-      '<footer class="wrap">' + esc(pr.name) + " · Pune, India · Reach me at " + esc(pr.email) + "</footer>" +
-      (canEdit ? renderBar() : "");
-    document.getElementById("app").innerHTML = html;
-  }
+  var pr = state.profile || {};
+  var all = state.projects || [];
+  var shipped = all.filter(function (p) { return p.group !== "building"; });
+  var building = all.filter(function (p) { return p.group === "building"; });
+  var ledger = (pr.ledger || []).map(function (x) { return "<div><b>" + esc(x.v) + "</b><span>" + esc(x.l) + "</span></div>"; }).join("");
+  document.getElementById("app").innerHTML =
+    '<header class="wrap"><div class="hero"><div>' +
+      '<span class="label">' + esc(pr.role) + "</span><h1>" + esc(pr.name) + "</h1>" +
+      '<p class="headline">' + esc(pr.headline) + '</p><p class="intro">' + esc(pr.intro) + "</p>" +
+      '<div class="contact"><span class="email"><code id="email-text">' + esc(pr.email) + '</code><button class="copy" id="copy-email" type="button">Copy</button></span>' +
+        (safeUrl(pr.linkedin) ? '<a href="' + esc(pr.linkedin) + '" target="_blank" rel="noopener">LinkedIn ↗</a>' : "") +
+        (safeUrl(pr.github) ? '<a href="' + esc(pr.github) + '" target="_blank" rel="noopener">GitHub ↗</a>' : "") +
+      "</div></div>" +
+      '<div class="ledger" aria-label="Track record">' + ledger + "</div></div></header>" +
+    '<main class="wrap">' +
+      '<section class="sec" aria-labelledby="work-h"><div class="sec-head"><h2 id="work-h">Shipped</h2><span class="label">' + shipped.length + " projects</span></div>" +
+        shipped.map(renderShipped).join("") + "</section>" +
+      (building.length ? '<section class="sec" aria-labelledby="wip-h"><div class="sec-head"><h2 id="wip-h">Currently building</h2><span class="label">' + building.length + " in progress</span></div>" +
+        '<div class="wip-grid">' + building.map(renderBuilding).join("") + "</div></section>" : "") +
+      '<section class="sec" aria-labelledby="exp-h"><div class="sec-head"><h2 id="exp-h">Experience</h2></div>' +
+        '<div class="timeline"><h4>Work</h4>' + renderRoles(pr.experience) + "<h4>Education</h4>" + renderRoles(pr.education) + "</div></section>" +
+    "</main>" +
+    '<footer class="wrap">' + esc(pr.name) + " · Pune, India</footer>";
 
-  function renderBar() {
-    if (!editing) return '<div class="edit-bar"><button class="btn" data-act="start">Edit portfolio</button></div>';
-    return '<div class="edit-bar">' +
-      '<span class="msg" role="status">' + esc(barMsg || (dirty ? "Unsaved changes" : "Editing")) + "</span>" +
-      '<button class="btn" data-act="stop"' + (saving ? " disabled" : "") + ">" + (dirty ? "Discard" : "Done") + "</button>" +
-      '<button class="btn primary" data-act="save"' + (!dirty || saving ? " disabled" : "") + ">" + (saving ? "Publishing…" : "Publish changes") + "</button></div>";
-  }
-
-  // ---------- forms ----------
-  function linesToMetrics(t) { return String(t || "").split("\n").map(function (l) { var p = l.split("|"); return { v: (p[0] || "").trim(), l: (p.slice(1).join("|") || "").trim() }; }).filter(function (m) { return m.v; }); }
-  function linesToLinks(t) { return String(t || "").split("\n").map(function (l) { var p = l.split("|"); return { label: (p[0] || "").trim(), url: (p.slice(1).join("|") || "").trim() }; }).filter(function (x) { return x.label || x.url; }); }
-
-  function field(id, label, value, opts) {
-    opts = opts || {};
-    var input = opts.area
-      ? '<textarea id="' + id + '">' + esc(value) + "</textarea>"
-      : opts.select
-        ? '<select id="' + id + '">' + opts.select.map(function (o) { return '<option value="' + o[0] + '"' + (o[0] === value ? " selected" : "") + ">" + o[1] + "</option>"; }).join("") + "</select>"
-        : '<input id="' + id + '" value="' + esc(value) + '">';
-    return '<div class="field"><label for="' + id + '">' + label + "</label>" + input + (opts.hint ? "<small>" + opts.hint + "</small>" : "") + "</div>";
-  }
-
-  function openProjectForm(i) {
-    var p = i == null ? { title: "", tagline: "", where: "", status: "", statusKind: "mvp", year: "", problem: "", built: "", outcome: "", metrics: [], stack: [], links: [], note: "" } : state.projects[i];
-    var ov = document.createElement("div");
-    ov.className = "overlay";
-    ov.innerHTML = '<form class="sheet" id="proj-form" novalidate>' +
-      "<h3>" + (i == null ? "Add a project" : "Edit " + esc(p.title)) + "</h3>" +
-      field("f-title", "Project name", p.title) +
-      field("f-tagline", "One-line summary", p.tagline) +
-      '<div class="row2">' + field("f-where", "Where", p.where, { hint: "e.g. At Amber · internal tool" }) + field("f-year", "Year", p.year) + "</div>" +
-      '<div class="row2">' + field("f-status", "Status label", p.status, { hint: "e.g. In daily use, Live MVP" }) +
-        field("f-kind", "Status colour", p.statusKind, { select: [["live", "Green · in use"], ["mvp", "Blue · built / MVP"], ["analysis", "Amber · analysis / research"]] }) + "</div>" +
-      field("f-problem", "Problem", p.problem, { area: true }) +
-      field("f-built", "What I built", p.built, { area: true }) +
-      field("f-outcome", "Outcome", p.outcome, { area: true }) +
-      field("f-metrics", "Numbers", (p.metrics || []).map(function (m) { return m.v + " | " + m.l; }).join("\n"), { area: true, hint: "One per line: number | what it means. Example: 6–10 | teammates using it" }) +
-      field("f-stack", "Tools", (p.stack || []).join(", "), { hint: "Comma separated" }) +
-      field("f-links", "Links", (p.links || []).map(function (l) { return l.label + " | " + l.url; }).join("\n"), { area: true, hint: "One per line: label | https://… link" }) +
-      field("f-note", "Small note (optional)", p.note) +
-      '<p class="err" id="f-err" hidden></p>' +
-      '<div class="actions"><button type="button" class="btn" id="f-cancel">Cancel</button><button type="submit" class="btn primary">' + (i == null ? "Add project" : "Save project") + "</button></div></form>";
-    document.body.appendChild(ov);
-    ov.querySelector("#f-title").focus();
-    ov.querySelector("#f-cancel").onclick = function () { ov.remove(); };
-    ov.addEventListener("click", function (e) { if (e.target === ov) ov.remove(); });
-    ov.querySelector("form").addEventListener("submit", function (e) {
-      e.preventDefault();
-      var g = function (id) { return ov.querySelector("#" + id).value.trim(); };
-      var err = ov.querySelector("#f-err");
-      if (!g("f-title")) { err.textContent = "Add a project name so the card has a heading."; err.hidden = false; return; }
-      var links = linesToLinks(g("f-links"));
-      var bad = links.filter(function (l) { return !safeUrl(l.url); });
-      if (bad.length) { err.textContent = "Each link needs a full address starting with https://. Check: " + (bad[0].label || bad[0].url); err.hidden = false; return; }
-      var np = {
-        id: (i == null ? (g("f-title").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "project") + "-" + Date.now().toString(36) : p.id),
-        title: g("f-title"), tagline: g("f-tagline"), where: g("f-where"), status: g("f-status"), statusKind: g("f-kind"), year: g("f-year"),
-        problem: g("f-problem"), built: g("f-built"), outcome: g("f-outcome"),
-        metrics: linesToMetrics(g("f-metrics")),
-        stack: g("f-stack").split(",").map(function (s) { return s.trim(); }).filter(Boolean),
-        links: links, note: g("f-note")
-      };
-      if (i == null) state.projects.push(np); else state.projects[i] = np;
-      dirty = true; barMsg = ""; ov.remove(); render();
-    });
-  }
-
-  function openProfileForm() {
-    var pr = state.profile;
-    var ov = document.createElement("div");
-    ov.className = "overlay";
-    ov.innerHTML = '<form class="sheet" novalidate><h3>Edit intro</h3>' +
-      field("p-role", "Label above your name", pr.role) +
-      field("p-headline", "Headline", pr.headline, { area: true }) +
-      field("p-intro", "Intro paragraph", pr.intro, { area: true }) +
-      field("p-ledger", "Track record", (pr.ledger || []).map(function (x) { return x.v + " | " + x.l; }).join("\n"), { area: true, hint: "One per line: number | what it means" }) +
-      '<div class="actions"><button type="button" class="btn" id="p-cancel">Cancel</button><button type="submit" class="btn primary">Save intro</button></div></form>';
-    document.body.appendChild(ov);
-    ov.querySelector("#p-cancel").onclick = function () { ov.remove(); };
-    ov.addEventListener("click", function (e) { if (e.target === ov) ov.remove(); });
-    ov.querySelector("form").addEventListener("submit", function (e) {
-      e.preventDefault();
-      var g = function (id) { return ov.querySelector("#" + id).value.trim(); };
-      pr.role = g("p-role"); pr.headline = g("p-headline"); pr.intro = g("p-intro");
-      pr.ledger = linesToMetrics(g("p-ledger")).map(function (m) { return { v: m.v, l: m.l }; });
-      dirty = true; barMsg = ""; ov.remove(); render();
-    });
-  }
-
-  // ---------- publish ----------
-  var RESET = ":root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px/1.4 system-ui,-apple-system,sans-serif}img{max-width:100%}[hidden]{display:none!important}";
-  function buildDoc() {
-    var keep = ["title", 'meta[name="claude:viewport-fit-sides"]', 'link[rel="preconnect"]', 'link[rel="stylesheet"]', "style"];
-    var parts = [];
-    keep.forEach(function (sel) { document.querySelectorAll("body " + sel).forEach(function (el) { parts.push(el.outerHTML); }); });
-    var json = JSON.stringify(state, null, 2).replace(/</g, "\\u003c");
-    parts.push('<div id="app"></div>');
-    parts.push('<script type="application/json" id="portfolio-data">\n' + json + "\n<\/script>");
-    parts.push(document.getElementById("app-js").outerHTML);
-    return '<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>' + RESET + "</style></head><body>" + parts.join("\n") + "</body></html>";
-  }
-
-  function publish() {
-    if (!artifactNs || saving) return;
-    saving = true; barMsg = "Publishing…"; render();
-    artifactNs.publish(buildDoc()).then(function () {
-      barMsg = "Published"; dirty = false; saving = false; render();
-    }, function (err) {
-      saving = false;
-      var code = err && err.code;
-      if (code === "conflict") { barMsg = "A newer version was published elsewhere. Reloading it."; }
-      else if (code === "not_writer" || code === "not_granted" || code === "not_declared" || code === "consent_required") { canEdit = false; editing = false; barMsg = ""; }
-      else if (code === "rate_limited") { barMsg = "Too many saves in a row. Wait a minute, then publish again."; }
-      else if (code === "too_large") { barMsg = "The page is too large to save. Shorten some project text."; }
-      else { barMsg = "Couldn't publish. Check your connection and try again."; }
-      render();
-    });
-  }
-
-  // ---------- events ----------
-  document.addEventListener("click", function (e) {
-    var t = e.target.closest("[data-act], #copy-email");
-    if (!t) return;
-    if (t.id === "copy-email") {
-      var txt = (state.profile || {}).email || "";
-      var done = function () { t.textContent = "Copied"; setTimeout(function () { t.textContent = "Copy"; }, 1600); };
-      var fallback = function () { var r = document.createRange(); r.selectNodeContents(document.getElementById("email-text")); var s = getSelection(); s.removeAllRanges(); s.addRange(r); t.textContent = "Selected"; };
-      try { navigator.clipboard.writeText(txt).then(done, fallback); } catch (er) { fallback(); }
-      return;
-    }
-    var act = t.getAttribute("data-act"), i = Number(t.getAttribute("data-i"));
-    var P = state.projects;
-    if (act === "start") { editing = true; barMsg = ""; render(); }
-    else if (act === "stop") {
-      if (dirty) { try { state = JSON.parse(dataEl.textContent); } catch (er) {} dirty = false; }
-      editing = false; barMsg = ""; render();
-    }
-    else if (act === "save") publish();
-    else if (act === "add") openProjectForm(null);
-    else if (act === "edit") openProjectForm(i);
-    else if (act === "profile") openProfileForm();
-    else if (act === "up" && i > 0) { var a = P[i - 1]; P[i - 1] = P[i]; P[i] = a; dirty = true; barMsg = ""; render(); }
-    else if (act === "down" && i < P.length - 1) { var b = P[i + 1]; P[i + 1] = P[i]; P[i] = b; dirty = true; barMsg = ""; render(); }
-    else if (act === "del") {
-      if (t.getAttribute("data-confirm") === "1") { P.splice(i, 1); dirty = true; barMsg = ""; render(); }
-      else { t.setAttribute("data-confirm", "1"); t.textContent = "Tap again to delete"; }
-    }
+  document.getElementById("copy-email").addEventListener("click", function () {
+    var t = this, txt = pr.email || "";
+    var done = function () { t.textContent = "Copied"; setTimeout(function () { t.textContent = "Copy"; }, 1600); };
+    var fallback = function () { var r = document.createRange(); r.selectNodeContents(document.getElementById("email-text")); var s = getSelection(); s.removeAllRanges(); s.addRange(r); t.textContent = "Selected"; };
+    try { navigator.clipboard.writeText(txt).then(done, fallback); } catch (er) { fallback(); }
   });
-  document.addEventListener("keydown", function (e) { if (e.key === "Escape") { var ov = document.querySelector(".overlay"); if (ov) ov.remove(); } });
-  window.addEventListener("beforeunload", function () { if (dirty) { try { sessionStorage.setItem("portfolio-draft", "1"); } catch (er) {} } });
-
-  render();
-
 })();
 </script>
 
