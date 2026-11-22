@@ -4,7 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Manu S Nair Portfolio</title>
-<meta name="description" content="Manu S Nair: partnerships manager at Amber who builds working AI prototypes. PRDs, prototypes, user research and case studies.">
+<meta name="description" content="Manu S Nair runs B2B partnerships at Amber and builds working AI products with Claude. Case studies: POAI, AJIO Decide (Next Leap Top Fellow), Job Search Copilot and more.">
+<link rel="canonical" href="https://manusnair.com/">
+<meta property="og:url" content="https://manusnair.com/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Manu S Nair","url":"https://manusnair.com/","jobTitle":"Manager, Partnerships","worksFor":{"@type":"Organization","name":"Amber","url":"https://amberstudent.com"},"address":{"@type":"PostalAddress","addressLocality":"Pune","addressCountry":"IN"},"sameAs":["https://www.linkedin.com/in/manu-nair-667896194","https://github.com/YoyYoBanta"]}</script>
 <meta property="og:title" content="Manu S Nair · Portfolio">
 <meta property="og:description" content="Partnerships manager who builds working AI prototypes with Claude. Case studies: POAI, AJIO Decide, Cricfield and more.">
 <meta property="og:type" content="website">
@@ -202,7 +205,12 @@ footer { padding-block: 48px 64px; color: var(--muted); font-size: 14px; }
 </head>
 <body>
 <div class="progress" aria-hidden="true"><i id="prog"></i></div>
-<div id="app"></div>
+<div id="app"><div class="wrap" style="padding-block:48px">
+<h1>Manu S Nair</h1>
+<p>I run B2B partnerships by day, and build working AI prototypes with Claude for the problems I see.</p>
+<p>Four years in study-abroad and student-housing partnerships, managing Amber's biggest partner accounts. Along the way I started vibe coding: writing PRDs, prototyping with Claude in an AI coding IDE, and testing before handing over. I'm looking for PM roles where knowing the customer and building the thing both count.</p>
+<p>Case studies: POAI, AJIO Decide, Job Search Copilot, Cricfield, Mutual Fund FAQ Assistant.</p>
+</div></div>
 <script type="application/json" id="portfolio-data">
 {
   "profile": {
@@ -528,7 +536,7 @@ footer { padding-block: 48px 64px; color: var(--muted); font-size: 14px; }
   }
 
   function renderRoles(list) {
-    return (list || []).map(function (r) { return '<div class="role"><strong>' + esc(r.role) + '</strong><span class="when">' + esc(r.when) + '</span><span class="org">' + esc(r.org) + "</span></div>"; }).join("");
+    return (list || []).map(function (r) { return '<div class="role"><strong>' + esc(r.role) + '</strong> <span class="when">' + esc(r.when) + '</span> <span class="org">' + esc(r.org) + "</span></div>"; }).join("");
   }
 
   var pr = state.profile || {};
@@ -553,10 +561,10 @@ footer { padding-block: 48px 64px; color: var(--muted); font-size: 14px; }
         shipped.map(renderShipped).join("") + "</section>" +
       (building.length ? '<section class="sec" aria-labelledby="wip-h"><div class="sec-head"><h2 id="wip-h">Currently building</h2><span class="label">' + building.length + " in progress</span></div>" +
         '<div class="wip-grid">' + building.map(renderBuilding).join("") + "</div></section>" : "") +
-      '<section class="sec" aria-labelledby="exp-h"><div class="sec-head"><h2 id="exp-h">Experience</h2></div>' +
+      '<section class="sec" aria-labelledby="exp-h" data-nosnippet><div class="sec-head"><h2 id="exp-h">Experience</h2></div>' +
         '<div class="timeline"><h4>Work</h4>' + renderRoles(pr.experience) + "<h4>Education</h4>" + renderRoles(pr.education) + "</div></section>" +
     "</main>" +
-    '<footer class="wrap">' + esc(pr.name) + " · Pune, India</footer>";
+    '<footer class="wrap" data-nosnippet>' + esc(pr.name) + " · Pune, India</footer>";
 
   document.getElementById("copy-email").addEventListener("click", function () {
     var t = this, txt = pr.email || "";
